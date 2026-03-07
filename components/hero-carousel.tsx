@@ -34,9 +34,9 @@ export function HeroCarousel({ articles }: HeroCarouselProps) {
   }
 
   return (
-    <section className="relative w-full overflow-hidden bg-muted">
-      <div className="mx-auto max-w-7xl">
-        <div className="relative aspect-[16/9] md:aspect-[21/9]">
+    <section className="relative w-full bg-muted">
+      <div className="relative left-1/2 -translate-x-1/2 w-screen max-w-none overflow-hidden">
+        <div className="relative w-full aspect-[16/9] md:aspect-[21/9]">
           {articles.map((article, index) => (
             <Link
               key={article.id}
@@ -58,19 +58,21 @@ export function HeroCarousel({ articles }: HeroCarouselProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
 
               {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                <div className="max-w-3xl">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground">
-                    {article.category.name}
-                  </span>
-                  <h2 className="mt-3 text-xl md:text-3xl lg:text-4xl font-bold text-card leading-tight line-clamp-2">
-                    {article.title}
-                  </h2>
-                  {article.excerpt && (
-                    <p className="mt-2 text-sm md:text-base text-card/80 line-clamp-2 hidden sm:block">
-                      {article.excerpt}
-                    </p>
-                  )}
+              <div className="absolute bottom-0 left-0 right-0">
+                <div className="mx-auto max-w-7xl px-4 py-6 md:py-10">
+                  <div className="max-w-3xl">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground">
+                      {article.category.name}
+                    </span>
+                    <h2 className="mt-3 text-xl md:text-3xl lg:text-4xl font-bold text-card leading-tight line-clamp-2">
+                      {article.title}
+                    </h2>
+                    {article.excerpt && (
+                      <p className="mt-2 text-sm md:text-base text-card/80 line-clamp-2 hidden sm:block">
+                        {article.excerpt}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </Link>

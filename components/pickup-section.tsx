@@ -6,6 +6,8 @@ type PickupSectionProps = {
 }
 
 export function PickupSection({ articles }: PickupSectionProps) {
+  const displayArticles = articles.slice(0, 5)
+
   return (
     <section className="py-8">
       <div className="flex items-center gap-3 mb-6">
@@ -15,13 +17,25 @@ export function PickupSection({ articles }: PickupSectionProps) {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {articles.map((article, index) => (
-          <ArticleCard
+      <div className="grid grid-cols-2 lg:grid-cols-4 lg:auto-rows-[12rem] gap-3 md:gap-6 items-stretch">
+        {displayArticles.map((article, index) => (
+          <div
             key={article.id}
-            article={article}
-            size={index === 0 ? "large" : "default"}
-          />
+            className={
+              index === 0
+                ? "col-span-2 lg:col-span-2 lg:row-span-2 h-full"
+                : "h-full"
+            }
+          >
+            <ArticleCard
+              article={article}
+              size="default"
+              imageHeightClassName={index === 0 ? "h-48 lg:h-[22rem]" : "h-48"}
+              equalHeight
+              showExcerpt={index === 0}
+              reserveExcerptSpace={index === 0}
+            />
+          </div>
         ))}
       </div>
     </section>
